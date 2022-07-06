@@ -9,13 +9,14 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,  
       allowNull: false,   
       primaryKey: true },
-    name: {
+      
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
       
     },
-    resumen:{
+    summary:{
       type: DataTypes.TEXT,
       allowNull: false
     },
@@ -27,11 +28,11 @@ module.exports = (sequelize) => {
       },
       allowNull:true
     },
-    paso:{
+    steps:{
       type: DataTypes.TEXT,
       allowNull: true
     },
-    imagen:{
+    image:{
       type: DataTypes.STRING,
       allowNull: true
     }

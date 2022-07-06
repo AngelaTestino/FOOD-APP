@@ -19,42 +19,63 @@ const router = Router();
 router.get('/recipes', async(req, res) => {
     const {name}=req.query
     let allRecipes=[]
-    if(name){
+    let recetaAPI=[]
+    const join=[{
+        model:Diet,
+        attributes:['id','title','summary','healthScore','steps','image','diets'],
+        through:{
+            attributes:[]
+        }}]
+    
+
         try{
-            const recipes= await Recipe.findAll({where:{
-                name:{
-                [Op.substring]: `${name}`}
-            }})
             
-            const response=await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${name}&addRecipeInformation=true&number=100`)
+            const response=await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
             const data= await response.json()
-            //const recipe=await data.results.filter(e=>{
-            //return  e.query.toUpperCase().includes(name.toUpperCase())===true}
+            recetaAPI=data.results.map(e=>{
+                return { id: e.id, title: e.title, summary: e.summary, healthScore: e.healthScore, steps: e.steps, image: e.image,diets: e.diets}
+            })
             
-            if(recipes){
-                allRecipes=[...recipes]
+            if(name){
+                try{
+                const recipesBD= await Recipe.findAll({where:{
+                    title:{
+                    [Op.substring]: `${name}`}
+                },
+                include:join})
+
+                if(recipesBD){
+                    allRecipes=[...recipesBD]
+                }
+                const recipesAPI= recetaAPI.filter(e=>{
+                return  e.title.toUpperCase().includes(name.toUpperCase())===true})
+            
+                if(recipesAPI){
+                    allRecipes=[...allRecipes,...recipesAPI]
+                }
+                if(allRecipes.length===0){res.status(404).json({message:'No se encontraron recetas con ese nombre'})}
+                res.status(200).json(allRecipes)}
+                catch(error){
+                    res.send(err)
+                }
+
             }
-            if(data.results){
-                allRecipes=[...allRecipes,...data.results]
+            else{
+                try{ const recipesBD= await Recipe.findAll({include:join})
+        
+                res.status(200).json([...recipesBD,...recetaAPI])}
+                catch(error){
+                    res.send(err)
+                }
             }
-            if(allRecipes.length===0){res.status(404).json({message:'No se encontraron recetas con ese nombre'})}
-            res.status(200).json(allRecipes)
+
+            
         }
         catch(err){
             res.send(err)
         }
-    }
-    else{
-        try{
-            const recipes= await Recipe.findAll()
-            const response=await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=false&number=100`)
-            const data= await response.json()
-            res.status(200).json([...recipes,...data.results])
-        }
-        catch(err){
-            res.send(err)
-        }
-    }
+    
+
     
 })
 router.get('/recipes/:id',async(req,res)=>{
@@ -66,13 +87,13 @@ router.get('/recipes/:id',async(req,res)=>{
             if(id.includes('-')===false){
             let ID=parseInt(id)
             const response=await fetch(`https://api.spoonacular.com/recipes/${ID}/information?apiKey=${API_KEY}`)
-            const data= await response.json()
-            if(data){
-                return res.status(200).json(data)}}
+            const recipeAPI= await response.json()
+            if(recipeAPI){
+                return res.status(200).json(recipeAPI)}}
             
-            const receta=await Recipe.findByPk(id)
-            if(receta){
-                return res.status(200).json(receta)}
+            const recipeBD=await Recipe.findByPk(id)
+            if(recipeBD){
+                return res.status(200).json(recipeBD)}
         
             //res.status(404).json({message:"No se encontro el receta"})
         
@@ -84,10 +105,10 @@ router.get('/recipes/:id',async(req,res)=>{
     
 })
 router.post('/recipes', async(req, res) => {
-    const {name,resumen,healthScore,paso,imagen,dieta}=req.body
+    const {title,summary,healthScore,steps,image,diets}=req.body
     try{
-        const recipe = await Recipe.create({name,resumen,healthScore,paso,imagen})
-        await recipe.addDiet(dieta)
+        const recipe = await Recipe.create({title,summary,healthScore,steps,image})
+        await recipe.addDiet(diets)
         res.status(201).json(recipe)
 
     }
