@@ -30,7 +30,7 @@ router.get('/recipes', async(req, res) => {
 
         try{
             
-            const response=await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+            const response=await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=20`)
             const data= await response.json()
             
             recetaAPI=data.results.map(e=>{

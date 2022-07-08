@@ -1,0 +1,25 @@
+.containNav{
+    display:flex;
+    flex-direction:row;
+    
+
+}
+.liNav{
+
+    display: inline;
+    list-style: none;
+    cursor: pointer;
+    font-size: large;
+    padding: 20px 20px;
+    font-weight: 700;
+
+    
+}
+.logoNav{
+    height: 40vh;
+    width: fit-content;
+}
+.linkNav{
+    text-decoration: none;
+
+}
