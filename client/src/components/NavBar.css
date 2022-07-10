@@ -1,6 +1,9 @@
 .containNav{
     display:flex;
     flex-direction:row;
+    align-items: center;
+    background-color: beige;
+    height: 20vh;
     
 
 }
@@ -10,16 +13,35 @@
     list-style: none;
     cursor: pointer;
     font-size: large;
-    padding: 20px 20px;
     font-weight: 700;
-
+    margin:30px 38px;
+    text-shadow: 0 0 1px rgb(172, 211, 230);
     
 }
 .logoNav{
-    height: 40vh;
-    width: fit-content;
+    height: 18vh;
+    width: 17vw;
+    margin: 20px;
+
+    
 }
 .linkNav{
     text-decoration: none;
+    color: #2F4858 ;
+    font-family: "Lucida Handwriting";
+    border-bottom: 3px solid transparent;
+    
+
+}
+.linkNav :hover{
+    color:  #916DB1;
+    border-bottom: 3px solid #916DB1;
+
+    
+}
+
+.linkNav.active{
+color:  #916DB1;
+
 
 }

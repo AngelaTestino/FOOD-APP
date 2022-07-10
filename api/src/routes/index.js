@@ -30,12 +30,12 @@ router.get('/recipes', async(req, res) => {
 
         try{
             
-            const response=await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=20`)
+            /* const response=await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=20`)
             const data= await response.json()
             
             recetaAPI=data.results.map(e=>{
                 return { id:e.id , title: e.title, healthScore: e.healthScore,image: e.image,diets: e.diets}
-            })
+            })*/
         
             if(name){
                 try{
@@ -47,16 +47,16 @@ router.get('/recipes', async(req, res) => {
 
                 if(recipesBD){
                     const rBD=recipesBD.map(e=>{
-                        return { id:e.id , title: e.title, healthScore: e.healthScore, image: e.image,diets: e.diets.map(d=>d.name)}
+                        return { id:e.id , title: e.title[0].toUpperCase() + e.title.substring(1), healthScore: e.healthScore, image: e.image,diets: e.diets.map(d=>d.name)}
                     })
                     allRecipes=[...rBD]
                 }
-                const recipesAPI= recetaAPI.filter(e=>{
+                /*const recipesAPI= recetaAPI.filter(e=>{
                 return  e.title.toUpperCase().includes(name.toUpperCase())===true})
             
                 if(recipesAPI){
                     allRecipes=[...allRecipes,...recipesAPI]
-                }
+                }*/
                 if(allRecipes.length===0){res.status(404).json({message:'No se encontraron recetas con ese nombre'})}
                 res.status(200).json(allRecipes)}
                 catch(error){
@@ -72,7 +72,7 @@ router.get('/recipes', async(req, res) => {
                 
                 
                 recipesBD=recipesBD.map(e=>{
-                    return { id:e.id , title: e.title, healthScore: e.healthScore, image: e.image,diets: e.diets.map(d=>d.name)}
+                    return { id:e.id , title: e.title[0].toUpperCase() + e.title.substring(1), healthScore: e.healthScore, image: e.image,diets: e.diets.map(d=>d.name)}
                 })
                     
                 res.status(200).json([...recipesBD,...recetaAPI])

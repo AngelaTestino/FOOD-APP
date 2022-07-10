@@ -12,8 +12,8 @@ function App() {
       
       
       <Route exact path='/'render={()=><Landing/>}/>
-      <Route path='/home' render={()=><NavBar/>}/>
-      <hr />
+      
+      <Route path='/home' render={()=><NavBar/>}/> 
       <Route exact path='/home' render={()=><Home/>}/>
       <Route path='/home/recipes' render={()=><Recipes/>}/>
 

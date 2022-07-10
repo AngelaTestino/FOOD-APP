@@ -1,16 +1,22 @@
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
+import "./Recipe.css"
 
 export default function Recipe({id,image,title,diets}){
     return (
         <>
-        <div>
-            <NavLink to={`/home/recipes/${id}`}>
-            <img src={image} alt={title} />
-            <h3>{title}</h3>
-            </NavLink>
-            <p>Tipo de dieta: {diets && diets.join(', ')}</p> 
+        
+    
+        <NavLink className="linkCard"to={`/home/recipes/${id}`}>
+            <div className="containerCard" style={{backgroundImage:`url(${image})`, backgroundRepeat:'no-repeat',backgroundSize:'cover'}}>
+            <div className="overlayRecipe">
+            <h2 className="title">{title}</h2>
+        
+            <p className="textRecipe">Type of Diets: {diets && diets.join(', ')}</p> 
+            
+            </div>
+            </div>
+        </NavLink>
 
-        </div>
         </>
     )
 }
