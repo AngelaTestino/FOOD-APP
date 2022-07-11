@@ -10,38 +10,34 @@ export default function Recipes(){
 
     const dispatch=useDispatch();
     let recipes=useSelector(state=>state.recipes)
-    const [allRecipes,setAllRecipes]=useState([]);
-    //const[currentPage,setCurrentPage]=useState(0);
+    const [btnNext,setBtnNext]=useState(false)
+    const [btnPrev,setBtnPrev]=useState(true)
     
-    
-    const[items,setItems]=useState([]);
+    const[currentPage,setCurrentPage]=useState(0);
 
-
-    const prevHandler=()=>{//items=los ultimos elementos de la lista
-        if(recipes.length===0){
-            recipes=allRecipes;
-            recipes.splice(-items.length)
+    function prevHandler(){
+        if(currentPage===0){
+            setBtnPrev(true)
         }
-        if(recipes.length>0 && recipes.length<9){
+        setBtnNext(false)
+        if(currentPage>0){
             
-            setItems(recipes.splice(-recipes.length));
+            setCurrentPage((currentPage)=>currentPage-9);
         }
-        if(recipes.length>=9){setItems(recipes.splice(-9))}
-        
+
+
+
     }
     function nextHandler(){
-    if(recipes.length===0){
-        
-            recipes=allRecipes;
-            setItems(recipes.splice(0,9));
-        setAllRecipes(items);}
-    if(recipes.length>0 && recipes.length<9){
-        setItems(recipes.splice(0,recipes.length));}
-    if(recipes.length>=9){setItems(recipes.splice(0,9));}
-        setAllRecipes(prevAllRecipes=>[...prevAllRecipes,...items]);
-
+        setBtnPrev(false)
+        if(recipes.length-(currentPage+9)<=9){
+            setBtnNext(true)
+    
+        }
+        setCurrentPage((currentPage)=>currentPage+9)
 
     }
+
     useEffect(()=>{
     getAllRecipes()(dispatch)
 
@@ -49,19 +45,10 @@ export default function Recipes(){
     },[dispatch]) 
 
 
-    useEffect(()=>{
-        setItems(recipes.splice(0,9));
-        // eslint-disable-next-line
+    
 
-    },[recipes])
-    useEffect(()=>{
-        setAllRecipes(items);
-        //setPagina(1)
-        // eslint-disable-next-line
-    },[])
 
- 
-  
+
 
     return(
         <>
@@ -69,12 +56,12 @@ export default function Recipes(){
         <div className="mainRecipes">
         <div className="containerRecipes">
         
-        {items && items.map((recipe)=><Recipe key={recipe.id}  {...recipe}/>)}
+        {recipes && recipes.slice(currentPage,currentPage+9).map((recipe)=><Recipe key={recipe.id}  {...recipe}/>)}
         </div>
-        
-        <button className="btnPaginado" onClick={prevHandler}>Previous</button>
-   
-        <button className="btnPaginado" onClick={nextHandler}>Next</button>
+      
+        <button className="btnPaginado" onClick={prevHandler}disabled={btnPrev}>Previous</button>
+       
+        <button className="btnPaginado" onClick={nextHandler}disabled={btnNext}>Next</button>
         </div>
 
         </>

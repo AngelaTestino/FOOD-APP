@@ -37,5 +37,10 @@
     background-color: #465563;
     
 }
+.btnPaginado:disabled{
+    background-color: #92959e;
+    color: rgb(202, 201, 201);
+    cursor: not-allowed;
+}
 
 
