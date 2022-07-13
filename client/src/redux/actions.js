@@ -1,6 +1,9 @@
 import {fetch} from 'cross-fetch';
 
 export const GET_ALL_RECIPES = 'GET_ALL_RECIPES';
+export const CREATE_RECIPE = 'CREATE_RECIPE';
+
+
 
 export const getAllRecipes = (name) => (dispatch) => {
     if (name){
@@ -14,5 +17,15 @@ export const getAllRecipes = (name) => (dispatch) => {
 
 };
 
+export const createRecipe = (form) => (dispatch) => {
+   return fetch('http://localhost:3001/recipes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(form)
+    })
+    .then(response => response.json())
+    .then(data => dispatch({ type: CREATE_RECIPE, payload: data }));
+}
 
-export const ADD_RECIPE = 'ADD_RECIPE';

@@ -11,7 +11,7 @@ export default function Recipe({id,image,title,diets}){
             <div className="overlayRecipe">
             <h2 className="title">{title}</h2>
         
-            <p className="textRecipe">Type of Diets: {diets && diets.join(', ')}</p> 
+            {diets && <p className="textRecipe">Type of Diets: {diets.join(', ')}</p> }
             
             </div>
             </div>

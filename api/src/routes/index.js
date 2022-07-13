@@ -125,7 +125,9 @@ router.get('/recipes/:id',async(req,res)=>{
     
 })
 router.post('/recipes', async(req, res) => {
-    const {title,summary,healthScore,steps,image,diets}=req.body
+   let {title,summary,healthScore,steps,image,diets}=req.body
+
+    if(image===''){image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBymBCsn8jubRKWfn4hhh4wfoTfwRcrVi21h5x5deDQoDNHPJk5EmEnhLMTFvMv7gSkro&usqp=CAU"}
     try{
         const recipe = await Recipe.create({title,summary,healthScore,steps,image})
         await recipe.addDiet(diets)

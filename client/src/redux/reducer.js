@@ -1,11 +1,12 @@
 
-import {GET_ALL_RECIPES} from "./actions";
+import {GET_ALL_RECIPES,CREATE_RECIPE} from "./actions";
 
 
 const initialState={
     recipes:[],
     recipe:{},
-    diets:[]
+    diets:[],
+    create:{}
 }
 
 
@@ -17,7 +18,10 @@ const reducer=(state=initialState,action)=>{
                 ...state,
                 recipes:action.payload
             }
-        
+        case CREATE_RECIPE:
+            return{
+                ...state,create:action.payload
+            }
             
         default:
             return state

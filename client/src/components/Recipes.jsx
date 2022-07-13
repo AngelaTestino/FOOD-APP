@@ -68,18 +68,3 @@ export default function Recipes(){
     )
 }
 
-/*const mapStateToProps=(state) =>{
-    return {
-        recipes: state.recipes
-    }
-
-    
-}
-const mapDispatchToProps=(dispatch) =>{
-    return {
-        getAllRecipes: () => getAllRecipes(dispatch)
-    }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Recipes)*/

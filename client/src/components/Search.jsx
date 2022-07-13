@@ -18,7 +18,7 @@ export default function Search(){
         e.preventDefault();
         getAllRecipes(name)(dispatch)
         setName("")
-  
+
     } 
         
     

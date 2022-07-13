@@ -11,7 +11,7 @@ align-items: center;
 .eachContainer{
     display:flex;
     justify-content: space-between;
-    margin:43px;
+    margin:35px;
 
 }
 .labelForm{
@@ -59,4 +59,24 @@ align-items: center;
 .btnCreate:hover{
     background-color: #465563;
     
+}
+.danger{
+    height: 35px;
+    width: 200px;
+    font-size: 1em;
+    font-weight: bold;
+    color: rgb(75, 72, 72);
+    font-family: Andale Mono, monospace;
+    margin-right: 10px;
+    outline-color: rgb(224, 64, 64);
+}
+.msgError{
+    
+    font-family: Andale Mono, monospace;
+    color: crimson;
+}
+.btnCreate:disabled{
+    background-color: #92959e;
+    color: rgb(202, 201, 201);
+    cursor: not-allowed;
 }
