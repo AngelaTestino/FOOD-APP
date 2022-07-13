@@ -20,8 +20,9 @@ export default function Recipes(){
             setBtnPrev(true)
         }
         setBtnNext(false)
+
         if(currentPage>0){
-            
+            setBtnPrev(true)
             setCurrentPage((currentPage)=>currentPage-9);
         }
 
@@ -30,6 +31,7 @@ export default function Recipes(){
     }
     function nextHandler(){
         setBtnPrev(false)
+        
         if(recipes.length-(currentPage+9)<=9){
             setBtnNext(true)
     
@@ -40,9 +42,15 @@ export default function Recipes(){
 
     useEffect(()=>{
     getAllRecipes()(dispatch)
-
     
     },[dispatch]) 
+    useEffect(()=>{
+
+        if(recipes.length<=9){
+            
+            setBtnNext(true)
+        }else{setBtnNext(false)}
+    },[recipes.length])
 
 
     

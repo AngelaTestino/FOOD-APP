@@ -41,7 +41,7 @@ router.get('/recipes', async(req, res) => {
                 try{
                 const recipesBD= await Recipe.findAll({where:{
                     title:{
-                    [Op.substring]: `${name}`}
+                    [Op.iLike]: name+'%'}
                 },attributes:['id','title','healthScore','image'],include:join})
                 
 
