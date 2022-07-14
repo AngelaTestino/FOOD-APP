@@ -2,7 +2,11 @@ import "./CreateRecipe.css";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {createRecipe} from "../redux/actions";
-const options = [
+import image from "../fondoCreate.jpeg"
+
+
+
+ const options = [
     {value: '', text: '--Choose one or multiple options--'},
     {value: '1', text: 'Gluten Free'},
     {value: '2', text: 'Ketogenic'},
@@ -21,6 +25,7 @@ const options = [
     {value: '15', text: 'Mediterranean'},
     {value: '16', text: 'Grain Free'},
     {value: '17', text: 'Fruitarian'}]
+    export const opciones=options.slice(1)
 
     const initialState={
         title:'',
@@ -35,7 +40,7 @@ const regExTitle=/[a-zA-ZÀ-ÖØ-öø-ÿ]+\.?(( |\-)[a-zA-ZÀ-ÖØ-öø-ÿ]+\.?)
 // eslint-disable-next-line
 const regExImage=/^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/
 
-export default function CreateRecipe(){
+export function CreateRecipe(){
 
     const[form,setForm]=useState(initialState)
     const[create,setCreate] = useState('')
@@ -123,7 +128,7 @@ export default function CreateRecipe(){
     
     return (
         <>
-        
+        <div className="mainCreateRecipe" style={{backgroundImage: 'url(https://th.bing.com/th/id/R.d35ce6ac6dec7424489d5a3195442db9?rik=boWwkump6Yg7qw&riu=http%3a%2f%2fwww.irisfmg.com%2fimg%2ftextures%2fbig%2fstream%2fwheat.jpg&ehk=jJyLNcYc%2bQ5rp%2btz2gIUfMNcrulUMXKvWGB43Atdg0Q%3d&risl=&pid=ImgRaw&r=0)'}}>
         <div className="formulario">
         <form onSubmit={handleSubmit}>
             <div className="eachContainer">
@@ -143,7 +148,7 @@ export default function CreateRecipe(){
     
             <div className="eachContainer">
             <label className="labelForm">Type of diet:</label>
-                <select name="diets" multiple={true} value={form.diets} onChange={handleSelect}>
+                <select name="diets" className="selectForm" multiple={true} value={form.diets} onChange={handleSelect}>
 
                 {options.map(option => ( option.value?<option key={option.value} value={option.value}>{option.text}</option>: <option key={option.value} value={option.value} disabled={true}>{option.text}</option>))}
 
@@ -169,7 +174,7 @@ export default function CreateRecipe(){
         </div>
         
         
-        
+        </div>
         </>
     )
 

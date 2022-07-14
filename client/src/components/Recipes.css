@@ -8,11 +8,63 @@
     justify-content: space-between;
     align-content: space-evenly;
     flex-wrap: wrap;
-    padding: 10%;
+    padding-top:50px;
+    padding-bottom: 50px;
+    padding-left:94px;
+    padding-right:94px;
+    
     
     
 
 }
+
+
+.labelFilter{
+    font-size: 1em;
+    font-weight: bold;
+    margin-right: 30px;
+    font-family: Andale Mono, monospace;
+    color:rgb(75, 72, 72);
+}
+.containerInputs{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-top: 26px;
+
+}
+
+
+
+
+
+
+
+.selectRecipes{
+
+    height: 35px;
+    width: 200px;
+    font-size: 1em;
+    font-weight: bold;
+    color: rgb(75, 72, 72);
+    font-family: Andale Mono, monospace;
+    margin-right: 10px;
+    outline:none;
+    cursor:pointer;
+    border:transparent;
+}
+.selectRecipes:hover{
+    background-color: #BEA5AA;
+    border: transparent;
+    
+}
+.selectRecipes::placeholder{
+    color: rgb(75, 72, 72);
+    font-family: Andale Mono, monospace;
+    text-align: center;
+}
+
+
 
 .btnPaginado{
     font-weight: 600;

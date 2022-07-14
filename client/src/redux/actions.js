@@ -2,7 +2,7 @@ import {fetch} from 'cross-fetch';
 
 export const GET_ALL_RECIPES = 'GET_ALL_RECIPES';
 export const CREATE_RECIPE = 'CREATE_RECIPE';
-
+export const RECETA_CACHE = 'RECETA_CACHE';
 
 
 export const getAllRecipes = (name) => (dispatch) => {
@@ -28,4 +28,13 @@ export const createRecipe = (form) => (dispatch) => {
     .then(response => response.json())
     .then(data => dispatch({ type: CREATE_RECIPE, payload: data }));
 }
+
+export const filtrarRecipe=(data)=>{
+    return { type: RECETA_CACHE, payload: data }}
+
+
+export const recetaCache=(data)=>{
+    return { type: RECETA_CACHE, payload: data}
+}
+
 
