@@ -79,12 +79,12 @@ export default function Recipes(){
         let index = event.target.selectedIndex;
         let valor=event.target.options[index].text
         let recipeFiltered = recipes.filter(recipe => recipe.diets.map((e)=>e.toUpperCase()).includes(valor.toUpperCase()));
-    
+        
         if(valor==='All'){
-            dispatch(filtrarRecipe(recipes))
+           filtrarRecipe(recipes)(dispatch)
             return setSelected(event.target.value)
         }
-        dispatch(filtrarRecipe(recipeFiltered))
+        filtrarRecipe(recipeFiltered)(dispatch)
         setSelected(event.target.value);
         
     };

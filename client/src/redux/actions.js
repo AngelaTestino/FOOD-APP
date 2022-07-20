@@ -51,8 +51,18 @@ export const createRecipe = (form) => (dispatch) => {
     .then(data => dispatch({ type: CREATE_RECIPE, payload: data }));
 }
 
-export const filtrarRecipe=(data)=>{
-    return { type: RECETA_CACHE, payload: data }}
+
+export const filtrarRecipe=(data)=>(dispatch)=>{
+    if(data.length===0) {
+        dispatch({ type: RECETA_CACHE, payload: data })
+        dispatch({ type: ERROR, payload: true })}
+        else{
+    dispatch({ type: RECETA_CACHE, payload: data })
+    dispatch({ type: ERROR, payload: false }) }
+}
+/*export const filtrarRecipe=(data)=>{
+
+    return { type: RECETA_CACHE, payload: data }}*/
 
 
 export const recetaCache=(data)=>{
