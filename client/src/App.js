@@ -5,8 +5,6 @@ import Home from './components/Home.jsx'
 import NavBar from './components/NavBar.jsx'
 import Recipes from './components/Recipes.jsx'
 import {CreateRecipe} from './components/CreateRecipe.jsx'
-
-
 import DetailRecipe from './components/DetailRecipe.jsx'
 import Diets from './components/Diets';
 
@@ -28,8 +26,8 @@ function App() {
       <Route exact path='/home/recipes/:id' render={()=><DetailRecipe/>}/>
       <Route exact path='/home/createRecipe' render={()=><CreateRecipe/>}/>
       <Route exact path='/home/diets' render={()=><Diets/>}/>
-      <Redirect to='/home'/>
-     
+      {/*<Redirect to='/'/>*/}
+  
     
       
 

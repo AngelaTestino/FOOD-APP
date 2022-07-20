@@ -58,7 +58,7 @@ return (
             <h2>Steps </h2>
             <div className="html" dangerouslySetInnerHTML={{ __html:recipe.steps}}/>
             </p>}</div>
-            <NavLink to='/home/recipes'><button className="btn">Volver</button></NavLink>
+            {/*<NavLink to='/home/recipes'><button className="btn">Volver</button></NavLink>*/}
             </div>
        
        
