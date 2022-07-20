@@ -26,7 +26,7 @@ function App() {
       <Route exact path='/home/recipes/:id' render={()=><DetailRecipe/>}/>
       <Route exact path='/home/createRecipe' render={()=><CreateRecipe/>}/>
       <Route exact path='/home/diets' render={()=><Diets/>}/>
-      {/*<Redirect to='/'/>*/}
+      <Redirect to='/'/>
   
     
       
