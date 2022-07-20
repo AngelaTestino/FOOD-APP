@@ -16,7 +16,8 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 
-router.get('/recipes', async(req, res) => {
+
+router.get('/recipes', async(req, res,next) => {
     const {name}=req.query
     let allRecipes=[]
     let recetaAPI=[]
@@ -30,7 +31,7 @@ router.get('/recipes', async(req, res) => {
 
         try{
             
-            /* const response=await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=20`)
+            /*const response=await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
             const data= await response.json()
             
             recetaAPI=data.results.map(e=>{
@@ -43,6 +44,7 @@ router.get('/recipes', async(req, res) => {
                     title:{
                     [Op.iLike]: name+'%'}
                 },attributes:['id','title','healthScore','image'],include:join})
+                console.log(recipesBD)
                 
 
                 if(recipesBD){
@@ -51,16 +53,17 @@ router.get('/recipes', async(req, res) => {
                     })
                     allRecipes=[...rBD]
                 }
-                /*const recipesAPI= recetaAPI.filter(e=>{
+                const recipesAPI= recetaAPI.filter(e=>{
                 return  e.title.toUpperCase().includes(name.toUpperCase())===true})
             
                 if(recipesAPI){
                     allRecipes=[...allRecipes,...recipesAPI]
-                }*/
-                if(allRecipes.length===0){res.status(404).json({message:'No se encontraron recetas con ese nombre'})}
-                res.status(200).json(allRecipes)}
-                catch(error){
-                    res.send(err)
+                }
+                if(allRecipes.length>0){res.status(200).json(allRecipes)}
+                if(allRecipes.length===0){res.status(404).json({message:'404'})}
+                }
+                catch(err){
+                    next(err)
                 }
 
             }
@@ -77,15 +80,15 @@ router.get('/recipes', async(req, res) => {
                     
                 res.status(200).json([...recipesBD,...recetaAPI])
             }
-                catch(error){
-                    res.send(err)
+                catch(err){
+                   next(err)
                 }
             }
 
             
         }
         catch(err){
-            res.send(err)
+           next(err)
         }
     
 
@@ -114,12 +117,11 @@ router.get('/recipes/:id',async(req,res)=>{
             if(recipeBD){
                 let rBD={id:recipeBD.id,title:recipeBD.title,summary:recipeBD.summary,steps:recipeBD.steps,healthScore:recipeBD.healthScore,image:recipeBD.image,diets:recipeBD.diets.map(d=>d.name)}
                 return res.status(200).json(rBD)}
-        
-            //res.status(404).json({message:"No se encontro el receta"})
+     
         
         }
         
-        catch(err){  res.send(err)}
+        catch(err){ next(err)}
     
     
     
@@ -135,7 +137,7 @@ router.post('/recipes', async(req, res) => {
 
     }
     catch(err){
-        res.send(err)
+        next(err)
     }
 })
 router.get('/diets', async(req, res) => {
@@ -144,7 +146,7 @@ router.get('/diets', async(req, res) => {
         res.status(200).json(diets)
     }
     catch(err){
-        res.send(err)
+        next(err)
     }
 })
 module.exports = router;

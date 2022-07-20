@@ -14,12 +14,13 @@ const {pathname}=useLocation()
         <>
             <header className="containNav">
                 <NavLink to="/home"><img className="logoNav"src={logoNav} alt="logoNav" /></NavLink>
+                <div className="snippets">
                 <ul>
                     <NavLink className="linkNav"  to="/home/recipes" ><li className="liNav">Recipes</li></NavLink>
                     <NavLink  className="linkNav" to="/home/diets"><li className="liNav">Diets</li></NavLink>
                     <NavLink  className="linkNav" to="/home/createRecipe"><li className="liNav">Create Recipe</li></NavLink>
                 </ul>
-                {pathname==='/home/recipes'&& <Search/>}
+                {pathname==='/home/recipes'&& <Search/>}</div>
             </header>
 
             

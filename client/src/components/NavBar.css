@@ -1,6 +1,7 @@
 .containNav{
     display:flex;
-    flex-direction:row;
+    
+    
     align-items: center;
     background-color: beige;
     height: 20vh;
@@ -15,15 +16,22 @@
     font-size: large;
     font-weight: 700;
     margin:30px 38px;
-    text-shadow: 0 0 1px rgb(172, 211, 230);
+   
     
 }
 .logoNav{
     height: 18vh;
     width: 17vw;
     margin: 20px;
-
+ 
     
+}
+.logoNav:hover{
+   
+    border-radius: 10px;
+
+
+
 }
 .linkNav{
     text-decoration: none;
@@ -44,4 +52,9 @@
 color:  #916DB1;
 
 
+}
+.snippets{
+    margin-left: 50px;
+    display: flex;
+    justify-content: center;
 }

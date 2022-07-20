@@ -1,17 +1,18 @@
 
 
 .container{
+ background:rgba(173, 159, 159, 0.3)  url("../land2.jpg") ;
 height: 100vh;
 width:100vw;
-padding-right: 15vw;
-display: flex;
-justify-content: flex-end;
-align-items: center;
-background-attachment: fixed;
-background-position: center center;
-background-size: cover;
-background-image: url("../fondo.jpg");
 
+display: flex;
+justify-content: center;
+align-items: center;
+background-repeat: no-repeat;
+background-size: cover;
+
+
+background-blend-mode: darken;
 }
     
 .miniContainer{
@@ -35,7 +36,7 @@ background-image: url("../fondo.jpg");
     font-size: 16px;
     font-weight: 600;
     border-radius: 5px;
-    background-color:#5a7a98;
+    background-color:#bb567d;
     color: beige;
     text-align: center;
     text-decoration: none;

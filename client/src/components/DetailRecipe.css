@@ -1,0 +1,168 @@
+.containerDetail{
+display:flex;
+justify-content: column;
+height:520px;
+background-image: linear-gradient(to right, rgb(180, 177, 177), rgb(180, 177, 177));
+   
+
+
+
+}
+.overlayDetail{
+    padding:10px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+background-color: rgba(0,0,0,0.15);
+text-align: center;
+}
+.overlapping{
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left{
+width: 36%;
+height: 300px;
+border-radius: 10px;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+margin-bottom:80px ;
+
+}
+
+.right{
+    width: 40%;
+    min-height: 300px;
+    background-color:  #465563;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border-radius: 10px;
+    color: white;
+    margin-top: 170px;
+    margin-left: -40px;
+    font-family:  Andale Mono, monospace;
+    
+    
+    
+}
+.right .h1{
+    margin-bottom: 30px;
+}
+
+
+.wave-animation {
+    position: relative;
+    width: 100%;
+    height: 143px;
+    background-color: rgb(180, 177, 177);
+    background-size: cover;
+    background-attachment: fixed;
+    
+  }
+  .wave-animation .wave {
+    position: absolute;
+    width: 100%;
+    height: 143px;/*PNG*/
+    top:0;
+    left:0;
+    background-image: url('https://vitalflow.com.ar/img/anim-onda.png');
+    animation: anim 10s linear infinite;
+    
+  }
+  .wave-animation .wave:before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 143px;
+    top:0;
+    left:0;
+    background-image: url('https://vitalflow.com.ar/img/anim-onda.png');
+    opacity: 0.4;
+    animation: anim-rev 10s linear infinite;
+    
+  }
+  .wave-animation .wave:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 143px;
+    top:0;
+    left:0;
+    background-image: url('https://vitalflow.com.ar/img/anim-onda.png');
+    opacity: 0.6;
+    animation-delay: -5s;
+    animation: anim 20s linear infinite;
+    
+  }
+  @keyframes anim {
+    0%
+    {
+      background-position: 0;
+    }
+    100%
+    {
+      background-position: 1360px;
+    }
+  }
+  @keyframes anim-rev {
+    0%
+    {
+      background-position: 1360;
+    }
+    100%
+    {
+      background-position: 0px;
+    }
+  }
+  .preparation{
+    
+    height: 500px;
+    font-family:  Andale Mono, monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .btn{
+    font-weight: 600;
+    height: 36px;
+    width:100px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color:#996692;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: transparent;
+    
+    margin-bottom: 30px;
+  }
+  .btn:hover{
+    background-color: #465563;
+
+  }
+.resumen{
+height: 300px;
+font-weight: 400;
+font-size: 1.2em;
+color: rgb(75, 72, 72);
+margin-bottom: 40px;
+
+}
+.html{
+    width: 890px;
+    text-align: justify;
+    margin: 30px;
+}

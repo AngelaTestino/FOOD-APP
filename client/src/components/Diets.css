@@ -1,0 +1,10 @@
+.dietsMain{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 50px;
+    justify-content: center;
+    margin: 0 auto;
+    background-color:rgb(179, 177, 180);
+
+  
+}

@@ -1,13 +1,17 @@
 
-import {GET_ALL_RECIPES,CREATE_RECIPE,RECETA_CACHE} from "./actions";
+import {GET_ALL_RECIPES,CREATE_RECIPE,RECETA_CACHE,RECETA_ORDER,ERROR,RECIPE_ID,GET_DIETS} from "./actions";
 
 
 const initialState={
     recipes:[],
     recetaCache:[],
+    recetaOrder:[],
     recipe:{},
     diets:[],
-    create:{}
+    create:{},
+    error:false
+
+    
 }
 
 
@@ -26,6 +30,20 @@ const reducer=(state=initialState,action)=>{
         case RECETA_CACHE:
             return{ ...state,
                 recetaCache:action.payload}
+        case RECETA_ORDER:
+            return{ ...state,
+                recetaOrder:action.payload}
+        case RECIPE_ID:
+            return{ ...state,
+                recipe:action.payload}
+        case ERROR:
+            return {
+                ...state,
+                error:action.payload
+            }
+        case GET_DIETS:
+            return{ ...state,
+                diets:action.payload}
         default:
             return state
     }
