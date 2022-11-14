@@ -31,12 +31,12 @@ router.get('/recipes', async(req, res,next) => {
 
         try{
             
-            const response=await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+           /* const response=await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
             const data= await response.json()
             
             recetaAPI=data.results.map(e=>{
                 return { id:e.id , title: e.title, healthScore: e.healthScore,image: e.image,diets: e.diets}
-            })
+            })*/
         
             if(name){
                 try{
@@ -44,7 +44,7 @@ router.get('/recipes', async(req, res,next) => {
                     title:{
                     [Op.iLike]: name+'%'}
                 },attributes:['id','title','healthScore','image'],include:join})
-                console.log(recipesBD)
+                
                 
 
                 if(recipesBD){
@@ -81,14 +81,14 @@ router.get('/recipes', async(req, res,next) => {
                 res.status(200).json([...recipesBD,...recetaAPI])
             }
                 catch(err){
-                   next(err)
+                next(err)
                 }
             }
 
             
         }
         catch(err){
-           next(err)
+        next(err)
         }
     
 
