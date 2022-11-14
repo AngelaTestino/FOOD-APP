@@ -31,7 +31,7 @@ router.get("/recipes", async (req, res, next) => {
       `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=70`
     );
     const data = await response.json();
-    if (data.results.length) {
+    if (data.results) {
       recetaAPI = data.results.map((e) => {
         return {
           id: e.id,
