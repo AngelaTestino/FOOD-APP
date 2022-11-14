@@ -1,4 +1,4 @@
-import { fetch } from "cross-fetch";
+import axios from "axios";
 
 export const GET_ALL_RECIPES = "GET_ALL_RECIPES";
 export const CREATE_RECIPE = "CREATE_RECIPE";
@@ -21,24 +21,16 @@ export const getAllRecipes = (recipes) => (dispatch) => {
     }
   }
 
-  return fetch("http://localhost:3001/recipes")
-    .then((response) => response.json())
-    .then((data) => {
-      dispatch({ type: GET_ALL_RECIPES, payload: data });
-      dispatch({ type: ERROR, payload: false });
-    });
+  return axios("http://localhost:3001/recipes").then(({ data }) => {
+    dispatch({ type: GET_ALL_RECIPES, payload: data });
+    dispatch({ type: ERROR, payload: false });
+  });
 };
 
 export const createRecipe = (form) => (dispatch) => {
-  return fetch("http://localhost:3001/recipes", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(form),
-  })
-    .then((response) => response.json())
-    .then((data) => dispatch({ type: CREATE_RECIPE, payload: data }));
+  return axios
+    .post("http://localhost:3001/recipes", form)
+    .then(({ data }) => dispatch({ type: CREATE_RECIPE, payload: data }));
 };
 
 export const filtrarRecipe = (data) => (dispatch) => {
@@ -56,13 +48,13 @@ export const recetaCache = (data) => {
 };
 
 export const recipeID = (data) => (dispatch) => {
-  return fetch(`http://localhost:3001/recipes/${data}`)
-    .then((response) => response.json())
-    .then((data) => dispatch({ type: RECIPE_ID, payload: data }));
+  return axios(`http://localhost:3001/recipes/${data}`).then(({ data }) =>
+    dispatch({ type: RECIPE_ID, payload: data })
+  );
 };
 
 export const diets = () => (dispatch) => {
-  return fetch("http://localhost:3001/diets")
-    .then((response) => response.json())
-    .then((data) => dispatch({ type: GET_DIETS, payload: data }));
+  return axios("http://localhost:3001/diets").then(({ data }) =>
+    dispatch({ type: GET_DIETS, payload: data })
+  );
 };
