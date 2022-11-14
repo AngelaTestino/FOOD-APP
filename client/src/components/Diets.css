@@ -1,10 +1,19 @@
 .dietsMain{
     display: flex;
+    width: 100vw;
     flex-wrap: wrap;
     padding-bottom: 50px;
     justify-content: center;
-    margin: 0 auto;
-    background-color:rgb(179, 177, 180);
+    margin: 0;
+    background-color: #DBDBDD;
+    
 
-  
 }
+
+@media screen and (max-width: 600px) {
+    .dietsMain{
+        padding-bottom:40px;
+        
+    }
+}
+    

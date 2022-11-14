@@ -12,7 +12,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 width:50vw;
-background-image: linear-gradient(to right, rgb(204, 133, 147), rgb(204, 133, 147));
+background-color: rgb(204, 133, 147);
 padding: 50px;
 }
 .explain{
@@ -26,6 +26,7 @@ padding: 50px;
     font-family: Andale Mono, monospace;
     line-height: 40px;
     margin:10px 90px;
+    min-width: 160px;
 }
 
 .plato{
@@ -45,3 +46,30 @@ padding: 50px;
     height: 100%;
     background-color: rgba(0,0,0,0.3);
 }
+@media screen and (max-width: 600px) {
+    .containHome{
+        flex-wrap: wrap;
+        width: 100vw;
+       
+    
+    }
+    .welcome{
+        width: 100vw;
+        height: 400px;
+        padding: 0px;
+    }
+    .plato{
+        width: 100vw;
+        height: 400px;
+    }
+    .explain{
+        margin:20px;
+    }
+    .description{
+        margin: 30px;
+        font-size: medium;
+        line-height: 30px;
+        
+    }
+}
+    

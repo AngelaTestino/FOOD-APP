@@ -9,9 +9,9 @@ export default function Home(){
         <div className="containHome">
             <div className="welcome"> 
                 <h1 className='explain'>
-                Bienvenidos a Henry Food app
+                Welcome to Henry Food app
                 </h1>
-                <p className="description">Sientete libre de elegir las mejores recetas segun tu tipo de dieta, así como de crear las tuyas...</p>
+                <p className="description">Feel free to choose your recipes according your diet, not to mention you can create your favorites...</p>
             </div>
             <div className='plato'><div className="overlay"></div></div>
         </div>
