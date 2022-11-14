@@ -116,6 +116,7 @@ export function CreateRecipe() {
     ) {
       createRecipe(form)(dispatch);
       setCreate("The recipe was created successfully!");
+      document.getElementById("inputScore").value = null;
       setForm(initialState);
       setBtn(true);
     }
@@ -181,6 +182,7 @@ export function CreateRecipe() {
             {/* <label className="labelForm">Health Score</label> */}
             <div className="divInput">
               <input
+                id="inputScore"
                 className="inputForm"
                 name="healthScore"
                 type="number"
