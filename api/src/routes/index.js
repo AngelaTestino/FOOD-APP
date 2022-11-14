@@ -28,19 +28,20 @@ router.get("/recipes", async (req, res, next) => {
 
   try {
     const response = await fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=70`
     );
     const data = await response.json();
-
-    recetaAPI = data.results.map((e) => {
-      return {
-        id: e.id,
-        title: e.title,
-        healthScore: e.healthScore,
-        image: e.image,
-        diets: e.diets,
-      };
-    });
+    if (data.results.length) {
+      recetaAPI = data.results.map((e) => {
+        return {
+          id: e.id,
+          title: e.title,
+          healthScore: e.healthScore,
+          image: e.image,
+          diets: e.diets,
+        };
+      });
+    }
 
     if (name) {
       try {
@@ -108,7 +109,7 @@ router.get("/recipes", async (req, res, next) => {
     next(err);
   }
 });
-router.get("/recipes/:id", async (req, res) => {
+router.get("/recipes/:id", async (req, res, next) => {
   let { id } = req.params;
 
   try {
@@ -159,7 +160,7 @@ router.get("/recipes/:id", async (req, res) => {
     next(err);
   }
 });
-router.post("/recipes", async (req, res) => {
+router.post("/recipes", async (req, res, next) => {
   let { title, summary, healthScore, steps, image, diets } = req.body;
 
   if (image === "") {
@@ -180,7 +181,7 @@ router.post("/recipes", async (req, res) => {
     next(err);
   }
 });
-router.get("/diets", async (req, res) => {
+router.get("/diets", async (req, res, next) => {
   try {
     let diets = await Diet.findAll();
     res.status(200).json(diets);
